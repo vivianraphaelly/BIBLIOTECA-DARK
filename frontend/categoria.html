@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Categorias - Dark Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">📚 Dark Library</div>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="livros.html">Livros</a>
+      <a href="categorias.html" class="active">Categorias</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+    <div class="auth-bar">
+      <button id="btn-login" class="btn">Entrar</button>
+      <button id="btn-register" class="btn btn-outline">Cadastrar</button>
+      <div id="user-bar"><span id="user-name"></span><button id="btn-logout">Sair</button></div>
+    </div>
+  </header>
+
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal">
+      <button class="modal-close" id="modal-close">&times;</button>
+      <h2 id="modal-title">Entrar</h2>
+      <div id="field-name" style="display:none"><input type="text" id="input-name" placeholder="Seu nome" /></div>
+      <input type="email" id="input-email" placeholder="E-mail" />
+      <input type="password" id="input-password" placeholder="Senha" />
+      <button class="btn-full" id="modal-submit">Entrar</button>
+      <p class="modal-msg" id="modal-msg"></p>
+      <p class="modal-switch" id="modal-switch-text">Não tem conta? <a onclick="openModal('register')">Cadastre-se</a></p>
+    </div>
+  </div>
+
+  <div class="page-title">
+    <h1>Categorias</h1>
+    <p>Explore por gênero e encontre sua próxima leitura</p>
+  </div>
+
+  <div class="category-grid">
+
+    <a href="livros.html?cat=Fantasia" id="fantasia" class="category-card">
+      <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=600&auto=format&fit=crop" alt="Fantasia">
+      <div class="category-card-overlay">
+        <div class="category-card-emoji">⚔️</div>
+        <h3>Fantasia</h3>
+        <span>Mundos mágicos e aventuras épicas</span>
+      </div>
+    </a>
+
+    <a href="livros.html?cat=Romance" id="romance" class="category-card">
+      <img src="https://images.unsplash.com/photo-1474932430478-367dbb6832c1?q=80&w=600&auto=format&fit=crop" alt="Romance">
+      <div class="category-card-overlay">
+        <div class="category-card-emoji">💕</div>
+        <h3>Romance</h3>
+        <span>Histórias de amor inesquecíveis</span>
+      </div>
+    </a>
+
+    <a href="livros.html?cat=Terror" id="terror" class="category-card">
+      <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&w=600&auto=format&fit=crop" alt="Terror">
+      <div class="category-card-overlay">
+        <div class="category-card-emoji">🕷️</div>
+        <h3>Terror</h3>
+        <span>Histórias que gelam a espinha</span>
+      </div>
+    </a>
+
+    <a href="livros.html?cat=Ficção Científica" id="ficcao" class="category-card">
+      <img src="https://images.unsplash.com/photo-1462332420958-a05d1e002413?q=80&w=600&auto=format&fit=crop" alt="Ficção Científica">
+      <div class="category-card-overlay">
+        <div class="category-card-emoji">🚀</div>
+        <h3>Ficção Científica</h3>
+        <span>O futuro e além do universo</span>
+      </div>
+    </a>
+
+    <a href="livros.html?cat=Tecnologia" id="tecnologia" class="category-card">
+      <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop" alt="Tecnologia">
+      <div class="category-card-overlay">
+        <div class="category-card-emoji">💻</div>
+        <h3>Tecnologia</h3>
+        <span>Programação e inovação digital</span>
+      </div>
+    </a>
+
+    <a href="livros.html?cat=Clássicos" id="classicos" class="category-card">
+      <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=600&auto=format&fit=crop" alt="Clássicos">
+      <div class="category-card-overlay">
+        <div class="category-card-emoji">📖</div>
+        <h3>Clássicos</h3>
+        <span>Obras que resistiram ao tempo</span>
+      </div>
+    </a>
+
+    <a href="livros.html?cat=Anime" id="anime" class="category-card">
+      <img src="imagens/categoria-anime.svg" alt="Anime">
+      <div class="category-card-overlay">
+        <div class="category-card-emoji">🎌</div>
+        <h3>Anime</h3>
+        <span>Mangás e o universo otaku</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- Seção de livros por categoria -->
+  <section class="books" style="padding-top:0">
+    <div class="section-header">
+      <h2>⚔️ Destaques de Fantasia</h2>
+      <a href="livros.html?cat=Fantasia" class="see-all">Ver todos →</a>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <img src="imagens/harry-potter.png" alt="Harry Potter" onerror="this.src='https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=400&auto=format&fit=crop'">
+        <div class="card-content"><span class="card-category">Fantasia</span><h3>Harry Potter</h3><p>J.K. Rowling · Magia e aventura em Hogwarts.</p><a href="livros.html" class="card-btn">Ver Livro</a></div>
+      </div>
+      <div class="card">
+        <img src="imagens/senhordosaneis.png" alt="Senhor dos Anéis" onerror="this.src='https://images.unsplash.com/photo-1469395446868-fb6a048d5ca3?q=80&w=400&auto=format&fit=crop'">
+        <div class="card-content"><span class="card-category">Fantasia</span><h3>Senhor dos Anéis</h3><p>J.R.R. Tolkien · A aventura épica da Terra Média.</p><a href="livros.html" class="card-btn">Ver Livro</a></div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=400&auto=format&fit=crop" alt="Narnia">
+        <div class="card-content"><span class="card-category">Fantasia</span><h3>As Crônicas de Nárnia</h3><p>C.S. Lewis · Um mundo mágico além do guarda-roupa.</p><a href="livros.html" class="card-btn">Ver Livro</a></div>
+      </div>
+    </div>
+
+    <div class="section-header" style="margin-top:60px">
+      <h2>💕 Destaques de Romance</h2>
+      <a href="livros.html?cat=Romance" class="see-all">Ver todos →</a>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <img src="imagens/paratodosgaratosqjaamei.png" alt="Para Todos os Garotos" onerror="this.src='https://images.unsplash.com/photo-1474932430478-367dbb6832c1?q=80&w=400&auto=format&fit=crop'">
+        <div class="card-content"><span class="card-category">Romance</span><h3>Para Todos os Garotos que Já Amei</h3><p>Jenny Han · O primeiro amor e a superação da timidez.</p><a href="livros.html" class="card-btn">Ver Livro</a></div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1474932430478-367dbb6832c1?q=80&w=400&auto=format&fit=crop" alt="Orgulho e Preconceito">
+        <div class="card-content"><span class="card-category">Romance</span><h3>Orgulho e Preconceito</h3><p>Jane Austen · Amor e sociedade na Inglaterra clássica.</p><a href="livros.html" class="card-btn">Ver Livro</a></div>
+      </div>
+    </div>
+
+    <div class="section-header" style="margin-top:60px">
+      <h2>🎌 Destaques de Anime</h2>
+      <a href="livros.html?cat=Anime" class="see-all">Ver todos →</a>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <img src="imagens/capas/naruto.svg" alt="Naruto">
+        <div class="card-content"><span class="card-category">Anime</span><h3>Naruto</h3><p>Masashi Kishimoto · O ninja que sonha em ser Hokage e ser reconhecido pela vila.</p><a href="livros.html?cat=Anime" class="card-btn">Ver Mangás</a></div>
+      </div>
+      <div class="card">
+        <img src="imagens/capas/one-piece.svg" alt="One Piece">
+        <div class="card-content"><span class="card-category">Anime</span><h3>One Piece</h3><p>Eiichiro Oda · Luffy e o bando dos Chapéus de Palha em busca do tesouro supremo.</p><a href="livros.html?cat=Anime" class="card-btn">Ver Mangás</a></div>
+      </div>
+      <div class="card">
+        <img src="imagens/capas/dragon-ball.svg" alt="Dragon Ball">
+        <div class="card-content"><span class="card-category">Anime</span><h3>Dragon Ball</h3><p>Akira Toriyama · As aventuras de Goku e a busca pelas esferas do dragão.</p><a href="livros.html?cat=Anime" class="card-btn">Ver Mangás</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div><div class="logo">📚 Dark Library</div><p style="color:#666;margin-top:10px;font-size:14px">Sua biblioteca virtual favorita.</p></div>
+      <div><h4>Navegação</h4><a href="index.html">Início</a><a href="livros.html">Livros</a><a href="categorias.html">Categorias</a><a href="contato.html">Contato</a></div>
+      <div><h4>Categorias</h4><a href="#fantasia">Fantasia</a><a href="#romance">Romance</a><a href="#terror">Terror</a><a href="#tecnologia">Tecnologia</a><a href="#anime">Anime</a></div>
+    </div>
+    <div class="footer-bottom">© 2026 Dark Library - Todos os direitos reservados</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

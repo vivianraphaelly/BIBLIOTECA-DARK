@@ -1,0 +1,11 @@
+{
+  "rules": {
+    "users": {
+      "$userKey": {
+        ".read": true,
+        ".write": "!data.exists()",
+        ".validate": "newData.hasChildren(['name', 'email', 'salt', 'hash'])"
+      }
+    }
+  }
+}

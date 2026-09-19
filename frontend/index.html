@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dark Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">📚 Dark Library</div>
+    <nav>
+      <a href="index.html" class="active">Início</a>
+      <a href="livros.html">Livros</a>
+      <a href="categorias.html">Categorias</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+    <div class="auth-bar">
+      <button id="btn-login" class="btn">Entrar</button>
+      <button id="btn-register" class="btn btn-outline">Cadastrar</button>
+      <div id="user-bar">
+        <span id="user-name"></span>
+        <button id="btn-logout">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal">
+      <button class="modal-close" id="modal-close">&times;</button>
+      <h2 id="modal-title">Entrar</h2>
+      <div id="field-name" style="display:none">
+        <input type="text" id="input-name" placeholder="Seu nome" />
+      </div>
+      <input type="email" id="input-email" placeholder="E-mail" />
+      <input type="password" id="input-password" placeholder="Senha" />
+      <button class="btn-full" id="modal-submit">Entrar</button>
+      <p class="modal-msg" id="modal-msg"></p>
+      <p class="modal-switch" id="modal-switch-text">
+        Não tem conta? <a onclick="openModal('register')">Cadastre-se</a>
+      </p>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-tag">✦ Biblioteca Virtual</span>
+      <h1>Explore Mundos<br>Através da Leitura</h1>
+      <p>Mergulhe em histórias épicas, romances inesquecíveis e aventuras sem fim.</p>
+      <div class="hero-actions">
+        <a href="livros.html" class="btn">Explorar Livros</a>
+        <a href="categorias.html" class="btn btn-outline">Ver Categorias</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="categories-bar">
+    <a href="categorias.html#fantasia" class="cat-pill">⚔️ Fantasia</a>
+    <a href="categorias.html#romance" class="cat-pill">💕 Romance</a>
+    <a href="categorias.html#terror" class="cat-pill">🕷️ Terror</a>
+    <a href="categorias.html#tecnologia" class="cat-pill">💻 Tecnologia</a>
+    <a href="categorias.html#classicos" class="cat-pill">📖 Clássicos</a>
+    <a href="categorias.html#ficcao" class="cat-pill">🚀 Ficção Científica</a>
+    <a href="categorias.html#anime" class="cat-pill">🎌 Anime</a>
+  </section>
+
+  <section class="books">
+    <div class="section-header">
+      <h2>Livros Populares</h2>
+      <a href="livros.html" class="see-all">Ver todos →</a>
+    </div>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-badge">⭐ Destaque</div>
+        <img src="imagens/harry-potter.png" alt="Harry Potter" onerror="this.src='https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=400&auto=format&fit=crop'">
+        <div class="card-content">
+          <span class="card-category">Fantasia</span>
+          <h3>Harry Potter</h3>
+          <p>Magia, aventura e amizade em Hogwarts.</p>
+          <a href="livros.html" class="card-btn">Ver Livro</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-badge">🏆 Clássico</div>
+        <img src="imagens/senhordosaneis.png" alt="Senhor dos Anéis" onerror="this.src='https://images.unsplash.com/photo-1469395446868-fb6a048d5ca3?q=80&w=400&auto=format&fit=crop'">
+        <div class="card-content">
+          <span class="card-category">Fantasia</span>
+          <h3>Senhor dos Anéis</h3>
+          <p>Uma aventura épica pela Terra Média.</p>
+          <a href="livros.html" class="card-btn">Ver Livro</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-badge">💕 Romance</div>
+        <img src="imagens/paratodosgaratosqjaamei.png" alt="Para Todos os Garotos" onerror="this.src='https://images.unsplash.com/photo-1474932430478-367dbb6832c1?q=80&w=400&auto=format&fit=crop'">
+        <div class="card-content">
+          <span class="card-category">Romance</span>
+          <h3>Para Todos os Garotos que Já Amei</h3>
+          <p>Uma comédia romântica adolescente sobre o primeiro amor.</p>
+          <a href="livros.html" class="card-btn">Ver Livro</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?q=80&w=400&auto=format&fit=crop" alt="Código Limpo">
+        <div class="card-content">
+          <span class="card-category">Tecnologia</span>
+          <h3>Código Limpo</h3>
+          <p>Aprenda boas práticas de programação com Robert C. Martin.</p>
+          <a href="livros.html" class="card-btn">Ver Livro</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&auto=format&fit=crop" alt="1984">
+        <div class="card-content">
+          <span class="card-category">Ficção Científica</span>
+          <h3>1984</h3>
+          <p>O clássico distópico de George Orwell sobre vigilância e controle.</p>
+          <a href="livros.html" class="card-btn">Ver Livro</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&auto=format&fit=crop" alt="Drácula">
+        <div class="card-content">
+          <span class="card-category">Terror</span>
+          <h3>Drácula</h3>
+          <p>O clássico do terror gótico de Bram Stoker que assombra gerações.</p>
+          <a href="livros.html" class="card-btn">Ver Livro</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="cta-content">
+      <h2>Pronto para sua próxima aventura?</h2>
+      <p>Cadastre-se gratuitamente e acesse centenas de livros.</p>
+      <button class="btn" onclick="openModal('register')">Criar conta grátis</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="logo">📚 Dark Library</div>
+        <p style="color:#666;margin-top:10px;font-size:14px">Sua biblioteca virtual favorita.</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <a href="index.html">Início</a>
+        <a href="livros.html">Livros</a>
+        <a href="categorias.html">Categorias</a>
+        <a href="contato.html">Contato</a>
+      </div>
+      <div>
+        <h4>Categorias</h4>
+        <a href="categorias.html#fantasia">Fantasia</a>
+        <a href="categorias.html#romance">Romance</a>
+        <a href="categorias.html#terror">Terror</a>
+        <a href="categorias.html#tecnologia">Tecnologia</a>
+        <a href="categorias.html#anime">Anime</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Dark Library - Todos os direitos reservados</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

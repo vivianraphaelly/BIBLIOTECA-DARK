@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contato - Dark Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">📚 Dark Library</div>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="livros.html">Livros</a>
+      <a href="categorias.html">Categorias</a>
+      <a href="contato.html" class="active">Contato</a>
+    </nav>
+    <div class="auth-bar">
+      <button id="btn-login" class="btn">Entrar</button>
+      <button id="btn-register" class="btn btn-outline">Cadastrar</button>
+      <div id="user-bar"><span id="user-name"></span><button id="btn-logout">Sair</button></div>
+    </div>
+  </header>
+
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal">
+      <button class="modal-close" id="modal-close">&times;</button>
+      <h2 id="modal-title">Entrar</h2>
+      <div id="field-name" style="display:none"><input type="text" id="input-name" placeholder="Seu nome" /></div>
+      <input type="email" id="input-email" placeholder="E-mail" />
+      <input type="password" id="input-password" placeholder="Senha" />
+      <button class="btn-full" id="modal-submit">Entrar</button>
+      <p class="modal-msg" id="modal-msg"></p>
+      <p class="modal-switch" id="modal-switch-text">Não tem conta? <a onclick="openModal('register')">Cadastre-se</a></p>
+    </div>
+  </div>
+
+  <div class="page-title">
+    <h1>Fale Conosco</h1>
+    <p>Tem alguma dúvida, sugestão ou quer indicar um livro? Mande uma mensagem!</p>
+  </div>
+
+  <div class="contact-section">
+    <div class="contact-info">
+      <div class="contact-info-item">
+        <span class="contact-info-icon">📧</span>
+        <span>contato@darklibrary.com.br</span>
+      </div>
+      <div class="contact-info-item">
+        <span class="contact-info-icon">📍</span>
+        <span>João Pessoa, PB — Brasil</span>
+      </div>
+      <div class="contact-info-item">
+        <span class="contact-info-icon">🕐</span>
+        <span>Seg–Sex, 9h às 18h</span>
+      </div>
+    </div>
+
+    <form class="contact-form" onsubmit="handleContact(event)">
+      <input type="text" placeholder="Seu nome completo" required id="c-name">
+      <input type="email" placeholder="Seu e-mail" required id="c-email">
+      <select id="c-assunto">
+        <option value="" disabled selected>Assunto</option>
+        <option>Sugestão de livro</option>
+        <option>Dúvida sobre a plataforma</option>
+        <option>Reportar problema</option>
+        <option>Parceria</option>
+        <option>Outro</option>
+      </select>
+      <textarea placeholder="Sua mensagem..." required id="c-msg"></textarea>
+      <button type="submit" class="btn" style="font-size:16px;padding:14px">Enviar mensagem</button>
+      <p id="contact-feedback" style="text-align:center;min-height:20px;font-size:15px"></p>
+    </form>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div><div class="logo">📚 Dark Library</div><p style="color:#666;margin-top:10px;font-size:14px">Sua biblioteca virtual favorita.</p></div>
+      <div><h4>Navegação</h4><a href="index.html">Início</a><a href="livros.html">Livros</a><a href="categorias.html">Categorias</a><a href="contato.html">Contato</a></div>
+      <div><h4>Categorias</h4><a href="categorias.html#fantasia">Fantasia</a><a href="categorias.html#romance">Romance</a><a href="categorias.html#terror">Terror</a><a href="categorias.html#tecnologia">Tecnologia</a><a href="categorias.html#anime">Anime</a></div>
+    </div>
+    <div class="footer-bottom">© 2026 Dark Library - Todos os direitos reservados</div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    function handleContact(e) {
+      e.preventDefault();
+      const fb = document.getElementById('contact-feedback');
+      fb.style.color = '#44ff88';
+      fb.textContent = '✅ Mensagem enviada com sucesso! Responderemos em breve.';
+      e.target.reset();
+      setTimeout(() => fb.textContent = '', 5000);
+    }
+  </script>
+</body>
+</html>

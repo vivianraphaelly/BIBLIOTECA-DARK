@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Livros - Dark Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">📚 Dark Library</div>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="livros.html" class="active">Livros</a>
+      <a href="categorias.html">Categorias</a>
+      <a href="contato.html">Contato</a>
+    </nav>
+    <div class="auth-bar">
+      <button id="btn-login" class="btn">Entrar</button>
+      <button id="btn-register" class="btn btn-outline">Cadastrar</button>
+      <div id="user-bar"><span id="user-name"></span><button id="btn-logout">Sair</button></div>
+    </div>
+  </header>
+
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal">
+      <button class="modal-close" id="modal-close">&times;</button>
+      <h2 id="modal-title">Entrar</h2>
+      <div id="field-name" style="display:none"><input type="text" id="input-name" placeholder="Seu nome" /></div>
+      <input type="email" id="input-email" placeholder="E-mail" />
+      <input type="password" id="input-password" placeholder="Senha" />
+      <button class="btn-full" id="modal-submit">Entrar</button>
+      <p class="modal-msg" id="modal-msg"></p>
+      <p class="modal-switch" id="modal-switch-text">Não tem conta? <a onclick="openModal('register')">Cadastre-se</a></p>
+    </div>
+  </div>
+
+  <div class="page-title">
+    <h1>Todos os Livros</h1>
+    <p>Encontre sua próxima leitura favorita</p>
+  </div>
+
+  <div class="filter-bar">
+    <input type="text" id="search-input" placeholder="🔍 Buscar livro ou autor..." oninput="filterBooks()">
+    <select id="filter-cat" onchange="filterBooks()">
+      <option value="">Todas as categorias</option>
+      <option value="Fantasia">Fantasia</option>
+      <option value="Romance">Romance</option>
+      <option value="Terror">Terror</option>
+      <option value="Ficção Científica">Ficção Científica</option>
+      <option value="Tecnologia">Tecnologia</option>
+      <option value="Clássicos">Clássicos</option>
+      <option value="Anime">Anime</option>
+    </select>
+    <select id="filter-order" onchange="filterBooks()">
+      <option value="">Ordenar por</option>
+      <option value="az">A → Z</option>
+      <option value="za">Z → A</option>
+    </select>
+  </div>
+
+  <section class="books">
+    <div class="cards" id="books-grid">
+
+      <div class="card" data-cat="Fantasia" data-title="Harry Potter">
+        <div class="card-badge">⭐ Destaque</div>
+        <img src="imagens/harry-potter.png" alt="Harry Potter"
+             onerror="this.src='https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=400&auto=format&fit=crop'">
+        <div class="card-content">
+          <span class="card-category">Fantasia</span>
+          <h3>Harry Potter</h3>
+          <p>J.K. Rowling · Magia, aventura e amizade em Hogwarts.</p>
+          <a href="https://share.google/0F8s3uj7JwR8q8rBT" class="card-btn">Ver Livro</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Fantasia" data-title="Senhor dos Anéis">
+        <div class="card-badge">🏆 Clássico</div>
+        <img src="imagens/senhordosaneis.png" alt="Senhor dos Anéis"
+             onerror="this.src='https://images.unsplash.com/photo-1469395446868-fb6a048d5ca3?q=80&w=400&auto=format&fit=crop'">
+        <div class="card-content">
+          <span class="card-category">Fantasia</span>
+          <h3>Senhor dos Anéis</h3>
+          <p>J.R.R. Tolkien · Uma aventura épica pela Terra Média.</p>
+          <a href="https://clark.dirzon.com/Doc/Details/telegram:Box%20Trilogia%20O%20Senhor%20dos%20Aneis%20-%20J.R.R.%20Tolkien.epub" class="card-btn">Ver Livro</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Romance" data-title="Para Todos os Garotos que Já Amei">
+        <div class="card-badge">💕 Romance</div>
+        <img src="imagens/paratodosgaratosqjaamei.png" alt="Para Todos os Garotos"
+             onerror="this.src='https://images.unsplash.com/photo-1474932430478-367dbb6832c1?q=80&w=400&auto=format&fit=crop'">
+        <div class="card-content">
+          <span class="card-category">Romance</span>
+          <h3>Para Todos os Garotos que Já Amei</h3>
+          <p>Jenny Han · Uma comédia romântica adolescente icônica sobre o primeiro amor.</p>
+          <a href="https://share.google/dLacRpwVmmKvxHl38" class="card-btn">Ver Detalhes</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Tecnologia" data-title="Código Limpo">
+        <img src="https://images.unsplash.com/photo-1519682337058-a94d519337bc?q=80&w=400&auto=format&fit=crop" alt="Código Limpo">
+        <div class="card-content">
+          <span class="card-category">Tecnologia</span>
+          <h3>Código Limpo</h3>
+          <p>Robert C. Martin · Aprenda boas práticas de programação.</p>
+          <a href="https://share.google/hVckt68bdcEN2PtEs" class="card-btn">Ver Detalhes</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Ficção Científica" data-title="1984">
+        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=400&auto=format&fit=crop" alt="1984">
+        <div class="card-content">
+          <span class="card-category">Ficção Científica</span>
+          <h3>1984</h3>
+          <p>George Orwell · Um clássico distópico sobre vigilância e controle.</p>
+          <a href="https://share.google/QPexUmgAXgx2jOgm5" class="card-btn">Ver Detalhes</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Terror" data-title="Drácula">
+        <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=400&auto=format&fit=crop" alt="Drácula">
+        <div class="card-content">
+          <span class="card-category">Terror</span>
+          <h3>Drácula</h3>
+          <p>Bram Stoker · O clássico do terror gótico que assombra gerações.</p>
+          <a href="https://share.google/kOyZhg6W8RkEygxd6" class="card-btn">Ver Detalhes</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Clássicos" data-title="Dom Casmurro">
+        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=400&auto=format&fit=crop" alt="Dom Casmurro">
+        <div class="card-content">
+          <span class="card-category">Clássicos</span>
+          <h3>Dom Casmurro</h3>
+          <p>Machado de Assis · O grande clássico do Realismo brasileiro.</p>
+          <a href="https://share.google/apfw8b29qoXyWzbJi" class="card-btn">Ver Detalhes</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Romance" data-title="Orgulho e Preconceito">
+        <img src="https://images.unsplash.com/photo-1474932430478-367dbb6832c1?q=80&w=400&auto=format&fit=crop" alt="Orgulho e Preconceito">
+        <div class="card-content">
+          <span class="card-category">Romance</span>
+          <h3>Orgulho e Preconceito</h3>
+          <p>Jane Austen · Uma história de amor e sociedade na Inglaterra do século XIX.</p>
+          <a href="https://share.google/KlVpxFHj0uYMiQH7B" class="card-btn">Ver Detalhes</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Ficção Científica" data-title="Duna">
+        <img src="https://images.unsplash.com/photo-1462332420958-a05d1e002413?q=80&w=400&auto=format&fit=crop" alt="Duna">
+        <div class="card-content">
+          <span class="card-category">Ficção Científica</span>
+          <h3>Duna</h3>
+          <p>Frank Herbert · Uma épica saga de ficção científica ambientada em um planeta desértico.</p>
+          <a href="https://share.google/YRu9qibw1PSqfUbt8" class="card-btn">Ver Detalhes</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Terror" data-title="It — A Coisa">
+        <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&w=400&auto=format&fit=crop" alt="It">
+        <div class="card-content">
+          <span class="card-category">Terror</span>
+          <h3>It — A Coisa</h3>
+          <p>Stephen King · O medo mais profundo da infância ganha vida em Derry.</p>
+          <a href="https://share.google/vDuoiHfHcEcpZcjNh" class="card-btn">Ver Detalhes</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Tecnologia" data-title="O Programador Pragmático">
+        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=400&auto=format&fit=crop" alt="Programador Pragmático">
+        <div class="card-content">
+          <span class="card-category">Tecnologia</span>
+          <h3>O Programador Pragmático</h3>
+          <p>David Thomas · Dicas essenciais para desenvolvedores de todos os níveis.</p>
+          <a href="https://share.google/XKZiLrewOR1wOr9Vw" class="card-btn">Ver Detalhes</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Fantasia" data-title="Narnia">
+        <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=400&auto=format&fit=crop" alt="Narnia">
+        <div class="card-content">
+          <span class="card-category">Fantasia</span>
+          <h3>As Crônicas de Nárnia</h3>
+          <p>C.S. Lewis · Um mundo mágico além do guarda-roupa espera por você.</p>
+          <a href="https://share.google/KDomCqF1Ct6h1vVSw" class="card-btn">Ver Detalhes</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Fantasia" data-title="O Hobbit">
+        <div class="card-badge">🔥 Mais lido</div>
+        <img src="imagens/capas/o-hobbit.svg" alt="O Hobbit">
+        <div class="card-content">
+          <span class="card-category">Fantasia</span>
+          <h3>O Hobbit</h3>
+          <p>J.R.R. Tolkien · A jornada de Bilbo Bolseiro com anões e um dragão.</p>
+          <a href="https://www.amazon.com.br/s?k=O+Hobbit+Tolkien" class="card-btn" target="_blank" rel="noopener noreferrer">Ver edição</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Fantasia" data-title="A Guerra dos Tronos">
+        <div class="card-badge">🔥 Mais lido</div>
+        <img src="imagens/capas/guerra-dos-tronos.svg" alt="A Guerra dos Tronos">
+        <div class="card-content">
+          <span class="card-category">Fantasia</span>
+          <h3>A Guerra dos Tronos</h3>
+          <p>George R. R. Martin · Intrigas, guerras e dinastias em Westeros.</p>
+          <a href="https://www.amazon.com.br/s?k=A+Guerra+dos+Tronos+George+R.+R.+Martin" class="card-btn" target="_blank" rel="noopener noreferrer">Ver edição</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Fantasia" data-title="Percy Jackson e o Ladrão de Raios">
+        <div class="card-badge">🔥 Mais lido</div>
+        <img src="imagens/capas/percy-jackson.svg" alt="Percy Jackson e o Ladrão de Raios">
+        <div class="card-content">
+          <span class="card-category">Fantasia</span>
+          <h3>Percy Jackson e o Ladrão de Raios</h3>
+          <p>Rick Riordan · Um garoto descobre que é filho de um deus grego.</p>
+          <a href="https://www.amazon.com.br/s?k=Percy+Jackson+e+o+Ladr%C3%A3o+de+Raios+Rick+Riordan" class="card-btn" target="_blank" rel="noopener noreferrer">Ver edição</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Fantasia" data-title="Alice no País das Maravilhas">
+        <div class="card-badge">🆓 Grátis</div>
+        <img src="imagens/capas/alice.svg" alt="Alice no País das Maravilhas">
+        <div class="card-content">
+          <span class="card-category">Fantasia</span>
+          <h3>Alice no País das Maravilhas</h3>
+          <p>Lewis Carroll · O clássico nonsense sobre a queda na toca do coelho (inglês, domínio público).</p>
+          <a href="https://www.gutenberg.org/ebooks/11" class="card-btn" target="_blank" rel="noopener noreferrer">Ler grátis</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Romance" data-title="A Culpa é das Estrelas">
+        <div class="card-badge">🔥 Mais lido</div>
+        <img src="imagens/capas/culpa-e-das-estrelas.svg" alt="A Culpa é das Estrelas">
+        <div class="card-content">
+          <span class="card-category">Romance</span>
+          <h3>A Culpa é das Estrelas</h3>
+          <p>John Green · Dois jovens, um amor intenso e uma história que emociona.</p>
+          <a href="https://www.amazon.com.br/s?k=A+Culpa+%C3%A9+das+Estrelas+John+Green" class="card-btn" target="_blank" rel="noopener noreferrer">Ver edição</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Romance" data-title="Jane Eyre">
+        <div class="card-badge">🆓 Grátis</div>
+        <img src="imagens/capas/jane-eyre.svg" alt="Jane Eyre">
+        <div class="card-content">
+          <span class="card-category">Romance</span>
+          <h3>Jane Eyre</h3>
+          <p>Charlotte Brontë · Uma órfã independente e um segredo em Thornfield Hall (inglês, domínio público).</p>
+          <a href="https://www.gutenberg.org/ebooks/1260" class="card-btn" target="_blank" rel="noopener noreferrer">Ler grátis</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Romance" data-title="O Morro dos Ventos Uivantes">
+        <div class="card-badge">🆓 Grátis</div>
+        <img src="imagens/capas/morro-dos-ventos-uivantes.svg" alt="O Morro dos Ventos Uivantes">
+        <div class="card-content">
+          <span class="card-category">Romance</span>
+          <h3>O Morro dos Ventos Uivantes</h3>
+          <p>Emily Brontë · Paixão e vingança nas charnecas inglesas (inglês, domínio público).</p>
+          <a href="https://www.gutenberg.org/ebooks/768" class="card-btn" target="_blank" rel="noopener noreferrer">Ler grátis</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Romance" data-title="Romeu e Julieta">
+        <div class="card-badge">🆓 Grátis</div>
+        <img src="imagens/capas/romeu-e-julieta.svg" alt="Romeu e Julieta">
+        <div class="card-content">
+          <span class="card-category">Romance</span>
+          <h3>Romeu e Julieta</h3>
+          <p>William Shakespeare · A tragédia de amor mais famosa da literatura (inglês, domínio público).</p>
+          <a href="https://www.gutenberg.org/ebooks/1513" class="card-btn" target="_blank" rel="noopener noreferrer">Ler grátis</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Terror" data-title="Frankenstein">
+        <div class="card-badge">🆓 Grátis</div>
+        <img src="imagens/capas/frankenstein.svg" alt="Frankenstein">
+        <div class="card-content">
+          <span class="card-category">Terror</span>
+          <h3>Frankenstein</h3>
+          <p>Mary Shelley · O cientista, a criatura e os limites da ciência (inglês, domínio público).</p>
+          <a href="https://www.gutenberg.org/ebooks/84" class="card-btn" target="_blank" rel="noopener noreferrer">Ler grátis</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Terror" data-title="O Médico e o Monstro">
+        <div class="card-badge">🆓 Grátis</div>
+        <img src="imagens/capas/medico-e-o-monstro.svg" alt="O Médico e o Monstro">
+        <div class="card-content">
+          <span class="card-category">Terror</span>
+          <h3>O Médico e o Monstro</h3>
+          <p>Robert L. Stevenson · Dr. Jekyll e Mr. Hyde: o lado sombrio de cada um (inglês, domínio público).</p>
+          <a href="https://www.gutenberg.org/ebooks/43" class="card-btn" target="_blank" rel="noopener noreferrer">Ler grátis</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Terror" data-title="O Iluminado">
+        <div class="card-badge">🔥 Mais lido</div>
+        <img src="imagens/capas/o-iluminado.svg" alt="O Iluminado">
+        <div class="card-content">
+          <span class="card-category">Terror</span>
+          <h3>O Iluminado</h3>
+          <p>Stephen King · Um inverno isolado em um hotel que não quer o hóspede vivo.</p>
+          <a href="https://www.amazon.com.br/s?k=O+Iluminado+Stephen+King" class="card-btn" target="_blank" rel="noopener noreferrer">Ver edição</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Ficção Científica" data-title="Fundação">
+        <div class="card-badge">🔥 Mais lido</div>
+        <img src="imagens/capas/fundacao.svg" alt="Fundação">
+        <div class="card-content">
+          <span class="card-category">Ficção Científica</span>
+          <h3>Fundação</h3>
+          <p>Isaac Asimov · A queda de um império galáctico e o plano para salvar o conhecimento.</p>
+          <a href="https://www.amazon.com.br/s?k=Funda%C3%A7%C3%A3o+Isaac+Asimov" class="card-btn" target="_blank" rel="noopener noreferrer">Ver edição</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Ficção Científica" data-title="A Guerra dos Mundos">
+        <div class="card-badge">🆓 Grátis</div>
+        <img src="imagens/capas/guerra-dos-mundos.svg" alt="A Guerra dos Mundos">
+        <div class="card-content">
+          <span class="card-category">Ficção Científica</span>
+          <h3>A Guerra dos Mundos</h3>
+          <p>H. G. Wells · A invasão marciana que inspirou a ficção científica moderna (inglês, domínio público).</p>
+          <a href="https://www.gutenberg.org/ebooks/36" class="card-btn" target="_blank" rel="noopener noreferrer">Ler grátis</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Ficção Científica" data-title="Vinte Mil Léguas Submarinas">
+        <div class="card-badge">🆓 Grátis</div>
+        <img src="imagens/capas/vinte-mil-leguas.svg" alt="Vinte Mil Léguas Submarinas">
+        <div class="card-content">
+          <span class="card-category">Ficção Científica</span>
+          <h3>Vinte Mil Léguas Submarinas</h3>
+          <p>Júlio Verne · A viagem do Capitão Nemo pelas profundezas do oceano (inglês, domínio público).</p>
+          <a href="https://www.gutenberg.org/ebooks/164" class="card-btn" target="_blank" rel="noopener noreferrer">Ler grátis</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Ficção Científica" data-title="O Guia do Mochileiro das Galáxias">
+        <div class="card-badge">🔥 Mais lido</div>
+        <img src="imagens/capas/guia-do-mochileiro.svg" alt="O Guia do Mochileiro das Galáxias">
+        <div class="card-content">
+          <span class="card-category">Ficção Científica</span>
+          <h3>O Guia do Mochileiro das Galáxias</h3>
+          <p>Douglas Adams · Humor, espaço sideral e a resposta para a vida, o universo e tudo mais.</p>
+          <a href="https://www.amazon.com.br/s?k=O+Guia+do+Mochileiro+das+Gal%C3%A1xias+Douglas+Adams" class="card-btn" target="_blank" rel="noopener noreferrer">Ver edição</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Tecnologia" data-title="Eloquent JavaScript">
+        <div class="card-badge">📄 PDF grátis</div>
+        <img src="imagens/capas/eloquent-javascript.svg" alt="Eloquent JavaScript">
+        <div class="card-content">
+          <span class="card-category">Tecnologia</span>
+          <h3>Eloquent JavaScript</h3>
+          <p>Marijn Haverbeke · Livro gratuito e completo de JavaScript, com PDF oficial para baixar (inglês).</p>
+          <a href="https://eloquentjavascript.net/Eloquent_JavaScript.pdf" class="card-btn" target="_blank" rel="noopener noreferrer">Baixar PDF</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Tecnologia" data-title="Pro Git">
+        <div class="card-badge">🆓 Grátis</div>
+        <img src="imagens/capas/pro-git.svg" alt="Pro Git">
+        <div class="card-content">
+          <span class="card-category">Tecnologia</span>
+          <h3>Pro Git</h3>
+          <p>Scott Chacon e Ben Straub · O livro oficial de Git, gratuito e disponível em português.</p>
+          <a href="https://git-scm.com/book/pt-br/v2" class="card-btn" target="_blank" rel="noopener noreferrer">Ler grátis</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Tecnologia" data-title="Automatize Tarefas Maçantes com Python">
+        <div class="card-badge">🆓 Grátis</div>
+        <img src="imagens/capas/automatize-python.svg" alt="Automatize Tarefas Maçantes com Python">
+        <div class="card-content">
+          <span class="card-category">Tecnologia</span>
+          <h3>Automatize Tarefas Maçantes com Python</h3>
+          <p>Al Sweigart · Python prático para automatizar planilhas, arquivos e sites (inglês, leitura gratuita).</p>
+          <a href="https://automatetheboringstuff.com/" class="card-btn" target="_blank" rel="noopener noreferrer">Ler grátis</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Clássicos" data-title="Memórias Póstumas de Brás Cubas">
+        <div class="card-badge">🆓 Grátis</div>
+        <img src="imagens/capas/memorias-postumas.svg" alt="Memórias Póstumas de Brás Cubas">
+        <div class="card-content">
+          <span class="card-category">Clássicos</span>
+          <h3>Memórias Póstumas de Brás Cubas</h3>
+          <p>Machado de Assis · Um defunto autor narra a própria vida com ironia (português, domínio público).</p>
+          <a href="https://www.gutenberg.org/ebooks/54829" class="card-btn" target="_blank" rel="noopener noreferrer">Ler grátis</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Clássicos" data-title="As Aventuras de Sherlock Holmes">
+        <div class="card-badge">🆓 Grátis</div>
+        <img src="imagens/capas/sherlock-holmes.svg" alt="As Aventuras de Sherlock Holmes">
+        <div class="card-content">
+          <span class="card-category">Clássicos</span>
+          <h3>As Aventuras de Sherlock Holmes</h3>
+          <p>Arthur Conan Doyle · Os casos mais famosos do detetive de Baker Street (inglês, domínio público).</p>
+          <a href="https://www.gutenberg.org/ebooks/1661" class="card-btn" target="_blank" rel="noopener noreferrer">Ler grátis</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Clássicos" data-title="O Retrato de Dorian Gray">
+        <div class="card-badge">🆓 Grátis</div>
+        <img src="imagens/capas/dorian-gray.svg" alt="O Retrato de Dorian Gray">
+        <div class="card-content">
+          <span class="card-category">Clássicos</span>
+          <h3>O Retrato de Dorian Gray</h3>
+          <p>Oscar Wilde · Beleza eterna, um retrato e o preço da vaidade (inglês, domínio público).</p>
+          <a href="https://www.gutenberg.org/ebooks/174" class="card-btn" target="_blank" rel="noopener noreferrer">Ler grátis</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Clássicos" data-title="A Metamorfose">
+        <div class="card-badge">🆓 Grátis</div>
+        <img src="imagens/capas/a-metamorfose.svg" alt="A Metamorfose">
+        <div class="card-content">
+          <span class="card-category">Clássicos</span>
+          <h3>A Metamorfose</h3>
+          <p>Franz Kafka · Gregor acorda transformado em inseto: o absurdo em sua forma mais pura (inglês, domínio público).</p>
+          <a href="https://www.gutenberg.org/ebooks/5200" class="card-btn" target="_blank" rel="noopener noreferrer">Ler grátis</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Clássicos" data-title="A Arte da Guerra">
+        <div class="card-badge">🆓 Grátis</div>
+        <img src="imagens/capas/arte-da-guerra.svg" alt="A Arte da Guerra">
+        <div class="card-content">
+          <span class="card-category">Clássicos</span>
+          <h3>A Arte da Guerra</h3>
+          <p>Sun Tzu · O tratado de estratégia mais influente da história (inglês, domínio público).</p>
+          <a href="https://www.gutenberg.org/ebooks/132" class="card-btn" target="_blank" rel="noopener noreferrer">Ler grátis</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Anime" data-title="Naruto">
+        <div class="card-badge">🎌 Mangá</div>
+        <img src="imagens/capas/naruto.svg" alt="Naruto">
+        <div class="card-content">
+          <span class="card-category">Anime</span>
+          <h3>Naruto</h3>
+          <p>Masashi Kishimoto · O ninja que sonha em ser Hokage e ser reconhecido pela vila.</p>
+          <a href="https://www.amazon.com.br/s?k=Naruto+mang%C3%A1+Masashi+Kishimoto" class="card-btn" target="_blank" rel="noopener noreferrer">Ver mangá</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Anime" data-title="One Piece">
+        <div class="card-badge">🎌 Mangá</div>
+        <img src="imagens/capas/one-piece.svg" alt="One Piece">
+        <div class="card-content">
+          <span class="card-category">Anime</span>
+          <h3>One Piece</h3>
+          <p>Eiichiro Oda · Luffy e o bando dos Chapéus de Palha em busca do tesouro supremo.</p>
+          <a href="https://www.amazon.com.br/s?k=One+Piece+mang%C3%A1+Eiichiro+Oda" class="card-btn" target="_blank" rel="noopener noreferrer">Ver mangá</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Anime" data-title="Dragon Ball">
+        <div class="card-badge">🎌 Mangá</div>
+        <img src="imagens/capas/dragon-ball.svg" alt="Dragon Ball">
+        <div class="card-content">
+          <span class="card-category">Anime</span>
+          <h3>Dragon Ball</h3>
+          <p>Akira Toriyama · As aventuras de Goku e a busca pelas esferas do dragão.</p>
+          <a href="https://www.amazon.com.br/s?k=Dragon+Ball+mang%C3%A1+Akira+Toriyama" class="card-btn" target="_blank" rel="noopener noreferrer">Ver mangá</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Anime" data-title="Death Note">
+        <div class="card-badge">🎌 Mangá</div>
+        <img src="imagens/capas/death-note.svg" alt="Death Note">
+        <div class="card-content">
+          <span class="card-category">Anime</span>
+          <h3>Death Note</h3>
+          <p>Tsugumi Ohba e Takeshi Obata · Um caderno que mata e o duelo mental entre Light e L.</p>
+          <a href="https://www.amazon.com.br/s?k=Death+Note+mang%C3%A1+Tsugumi+Ohba" class="card-btn" target="_blank" rel="noopener noreferrer">Ver mangá</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Anime" data-title="Attack on Titan">
+        <div class="card-badge">🎌 Mangá</div>
+        <img src="imagens/capas/shingeki-no-kyojin.svg" alt="Attack on Titan">
+        <div class="card-content">
+          <span class="card-category">Anime</span>
+          <h3>Attack on Titan</h3>
+          <p>Hajime Isayama · A humanidade cercada por muralhas e ameaçada por titãs.</p>
+          <a href="https://www.amazon.com.br/s?k=Attack+on+Titan+Shingeki+no+Kyojin+mang%C3%A1+Hajime+Isayama" class="card-btn" target="_blank" rel="noopener noreferrer">Ver mangá</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Anime" data-title="Fullmetal Alchemist">
+        <div class="card-badge">🎌 Mangá</div>
+        <img src="imagens/capas/fullmetal-alchemist.svg" alt="Fullmetal Alchemist">
+        <div class="card-content">
+          <span class="card-category">Anime</span>
+          <h3>Fullmetal Alchemist</h3>
+          <p>Hiromu Arakawa · Dois irmãos alquimistas e o preço da troca equivalente.</p>
+          <a href="https://www.amazon.com.br/s?k=Fullmetal+Alchemist+mang%C3%A1+Hiromu+Arakawa" class="card-btn" target="_blank" rel="noopener noreferrer">Ver mangá</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Anime" data-title="Demon Slayer">
+        <div class="card-badge">🎌 Mangá</div>
+        <img src="imagens/capas/demon-slayer.svg" alt="Demon Slayer">
+        <div class="card-content">
+          <span class="card-category">Anime</span>
+          <h3>Demon Slayer</h3>
+          <p>Koyoharu Gotouge · Tanjiro enfrenta demônios para salvar sua irmã Nezuko.</p>
+          <a href="https://www.amazon.com.br/s?k=Demon+Slayer+Kimetsu+no+Yaiba+mang%C3%A1+Koyoharu+Gotouge" class="card-btn" target="_blank" rel="noopener noreferrer">Ver mangá</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Anime" data-title="Jujutsu Kaisen">
+        <div class="card-badge">🎌 Mangá</div>
+        <img src="imagens/capas/jujutsu-kaisen.svg" alt="Jujutsu Kaisen">
+        <div class="card-content">
+          <span class="card-category">Anime</span>
+          <h3>Jujutsu Kaisen</h3>
+          <p>Gege Akutami · Feiticeiros, maldições e um estudante que abriga Sukuna.</p>
+          <a href="https://www.amazon.com.br/s?k=Jujutsu+Kaisen+mang%C3%A1+Gege+Akutami" class="card-btn" target="_blank" rel="noopener noreferrer">Ver mangá</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Anime" data-title="Berserk">
+        <div class="card-badge">🎌 Mangá</div>
+        <img src="imagens/capas/berserk.svg" alt="Berserk">
+        <div class="card-content">
+          <span class="card-category">Anime</span>
+          <h3>Berserk</h3>
+          <p>Kentaro Miura · A saga sombria do espadachim Guts, um clássico da fantasia sombria.</p>
+          <a href="https://www.amazon.com.br/s?k=Berserk+mang%C3%A1+Kentaro+Miura" class="card-btn" target="_blank" rel="noopener noreferrer">Ver mangá</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Anime" data-title="Tokyo Ghoul">
+        <div class="card-badge">🎌 Mangá</div>
+        <img src="imagens/capas/tokyo-ghoul.svg" alt="Tokyo Ghoul">
+        <div class="card-content">
+          <span class="card-category">Anime</span>
+          <h3>Tokyo Ghoul</h3>
+          <p>Sui Ishida · Kaneki vira meio-ghoul e precisa viver entre dois mundos.</p>
+          <a href="https://www.amazon.com.br/s?k=Tokyo+Ghoul+mang%C3%A1+Sui+Ishida" class="card-btn" target="_blank" rel="noopener noreferrer">Ver mangá</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Anime" data-title="Chainsaw Man">
+        <div class="card-badge">🎌 Mangá</div>
+        <img src="imagens/capas/chainsaw-man.svg" alt="Chainsaw Man">
+        <div class="card-content">
+          <span class="card-category">Anime</span>
+          <h3>Chainsaw Man</h3>
+          <p>Tatsuki Fujimoto · Denji, um caçador de demônios com motosserras no corpo.</p>
+          <a href="https://www.amazon.com.br/s?k=Chainsaw+Man+mang%C3%A1+Tatsuki+Fujimoto" class="card-btn" target="_blank" rel="noopener noreferrer">Ver mangá</a>
+        </div>
+      </div>
+
+      <div class="card" data-cat="Anime" data-title="My Hero Academia">
+        <div class="card-badge">🎌 Mangá</div>
+        <img src="imagens/capas/my-hero-academia.svg" alt="My Hero Academia">
+        <div class="card-content">
+          <span class="card-category">Anime</span>
+          <h3>My Hero Academia</h3>
+          <p>Kohei Horikoshi · Num mundo de superpoderes, um garoto sem dom sonha em ser herói.</p>
+          <a href="https://www.amazon.com.br/s?k=My+Hero+Academia+mang%C3%A1+Kohei+Horikoshi" class="card-btn" target="_blank" rel="noopener noreferrer">Ver mangá</a>
+        </div>
+      </div>
+    </div>
+    <p id="no-results" style="display:none;text-align:center;color:#888;padding:60px 0;font-size:18px">Nenhum livro encontrado. 😔</p>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div><div class="logo">📚 Dark Library</div><p style="color:#666;margin-top:10px;font-size:14px">Sua biblioteca virtual favorita.</p></div>
+      <div><h4>Navegação</h4><a href="index.html">Início</a><a href="livros.html">Livros</a><a href="categorias.html">Categorias</a><a href="contato.html">Contato</a></div>
+      <div><h4>Categorias</h4><a href="categorias.html#fantasia">Fantasia</a><a href="categorias.html#romance">Romance</a><a href="categorias.html#terror">Terror</a><a href="categorias.html#tecnologia">Tecnologia</a><a href="categorias.html#anime">Anime</a></div>
+    </div>
+    <div class="footer-bottom">© 2026 Dark Library - Todos os direitos reservados</div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    function filterBooks() {
+      const search = document.getElementById('search-input').value.toLowerCase();
+      const cat = document.getElementById('filter-cat').value;
+      const order = document.getElementById('filter-order').value;
+      const cards = Array.from(document.querySelectorAll('.card'));
+
+      let visible = cards.filter(c => {
+        const title = c.dataset.title.toLowerCase();
+        const cardCat = c.dataset.cat;
+        return title.includes(search) && (!cat || cardCat === cat);
+      });
+
+      if (order === 'az') visible.sort((a, b) => a.dataset.title.localeCompare(b.dataset.title));
+      if (order === 'za') visible.sort((a, b) => b.dataset.title.localeCompare(a.dataset.title));
+
+      const grid = document.getElementById('books-grid');
+      cards.forEach(c => c.style.display = 'none');
+      visible.forEach(c => { c.style.display = ''; grid.appendChild(c); });
+
+      document.getElementById('no-results').style.display = visible.length === 0 ? 'block' : 'none';
+    }
+
+    // Abre já filtrado quando vem de categorias.html?cat=...
+    const catParam = new URLSearchParams(location.search).get('cat');
+    if (catParam) {
+      document.getElementById('filter-cat').value = catParam;
+      filterBooks();
+    }
+  </script>
+</body>
+</html>
